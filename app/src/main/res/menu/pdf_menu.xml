@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/ic_bookmark_white_24dp"
+        android:id="@+id/action_bookmark"
+        app:showAsAction="always"
+        android:title="Bookmark"/>
+
+</menu>

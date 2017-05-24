@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    android:background="@color/primaryColor"
+   >
+<!--  android:alpha="0.8" -->
+<!--      android:background="@drawable/img_drawer_header" -->
+     
+        <TextView
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="16dp"
+        android:paddingBottom="16dp"
+        android:id="@+id/tv_nav_drawer_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+         style="@style/TextAppearance.AppCompat.Small"
+        android:textColor="#ffffff"/>
+    <TextView
+        android:id="@+id/tv_nav_drawer_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:paddingLeft="16dp"
+        android:paddingBottom="8dp"
+        android:layout_above="@id/tv_nav_drawer_email"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#ffffff"
+        android:text="PDF READER PRO" />
+
+    <ImageView
+        android:paddingBottom="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/imageView1"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ic_ladsfsduncher" />
+
+</RelativeLayout>

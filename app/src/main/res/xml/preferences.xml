@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" 
+        android:title="@string/PDFSettings"
+        android:summary="@string/settings_summary">
+
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="hidden_file_chk" 
+        android:title="Show hidden files" 
+        android:summary="Hidden files are considered as, file name having starting symbol '  . ' (dot)"
+        />
+
+    
+    
+        
+            <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="directory_remember" 
+        android:title="Remember Directory" 
+        />
+        
+            <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="full_screen" 
+        android:title="Full Screen PDF View" 
+        />
+        
+        
+        
+        
+    
+    
+    <!--         key hired -->
+    
+    <Preference android:title="File Search Loaction"
+        android:key="pref_file_loc"
+        android:summary="Here you can select directory where automatic searching of PDF files performed. All subfolders are also considered."
+        />
+
+    <PreferenceCategory
+        android:title="CUSTOM BOOKMARK ROW SIZE">
+        <ListPreference
+            android:title="Pick bookmark row size (portrait)"
+            android:key="listPref_bookmark_p"
+            android:defaultValue="3"
+            android:entries="@array/listArray_bookmark_row"
+            android:entryValues="@array/listArray_bookmark_row" />
+
+        <ListPreference
+            android:title="Pick bookmark row size (landscape)"
+            android:key="listPref_bookmark_l"
+            android:defaultValue="4"
+            android:entries="@array/listArray_bookmark_row"
+            android:entryValues="@array/listArray_bookmark_row" />
+    </PreferenceCategory>
+    
+<!--         <Preference android:title="File Search Loaction" -->
+<!--         android:key="pref_file_loc" -->
+<!--         android:summary="Here you can select directory where automatic searching of PDF files performed. All subfolders are also considered." -->
+<!--         /> -->
+    
+<!--     <CheckBoxPreference -->
+<!--         android:defaultValue="false" -->
+<!--         android:summary="Disable the Statusbar notification" -->
+<!--         android:key="pref_notific" -->
+<!--         android:title="Disable Notification" /> -->
+    
+    
+    
+<!--     <EditTextPreference -->
+<!--         android:key="pref_list_limit" -->
+<!--         android:summary="@string/pref_summary_list_size" -->
+<!--         android:title="@string/pref_list_limit" /> -->
+
+<!--     <ListPreference -->
+<!--         android:defaultValue="@string/pref_color_theme_value" -->
+<!--         android:dialogTitle="@string/pref_color_theme" -->
+<!--         android:entries="@array/pref_color_theme_entries" -->
+<!--         android:entryValues="@array/pref_color_theme_values" -->
+<!--         android:key="pref_syncConnectionType" -->
+<!--         android:title="@string/pref_color_theme" /> -->
+
+    
+</PreferenceScreen>

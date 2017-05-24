@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    
+    
+   <color name="primaryColor">#F44336</color>
+<color name="primaryColorDark">#D32F2F</color>
+<color name="primaryColorLight">#FFCDD2</color>
+
+
+<color name="text_iconColor">#FFFFFF</color>
+<color name="accentColor">#009688</color>
+<color name="primaryTextColor">#212121</color>
+<color name="secondaryTextColor">#727272</color>
+<color name="dividerColor">#B6B6B6</color>
+    
+ <color name="a1">#F44336</color>
+ <color name="a2">#3F51B5</color>
+ <color name="a3">#4CAF50</color>
+ <color name="a4">#E91E63</color>
+ <color name="a5">#2196F3</color>
+ <color name="a6">#FF5722</color>
+ <color name="a7">#795548</color>
+ <color name="a8">#009688</color>
+ <color name="a9">#00BCD4</color>
+ <color name="a10">#9E9E9E</color>   
+ 
+<!--    <color name="primaryColor">#009688</color> -->
+<!-- <color name="primaryColorDark">#00796B</color> -->
+<!-- <color name="primaryColorLight">#B2DFDB</color> -->
+<!-- <color name="text_iconColor">#FFFFFF</color> -->
+<!-- <color name="accentColor">#FF5252</color> -->
+<!-- <color name="primaryTextColor">#212121</color> -->
+<!-- <color name="secondaryTextColor">#727272</color> -->
+<!-- <color name="dividerColor">#B6B6B6</color> -->
+<!--   <color name="canvas">#FF404040</color> -->
+
+    <color name="main_baground">#eeeeee</color>
+    <color name="main_card_baground">#ffffff</color>
+<color name="white_color">#ffffff</color>
+<color name="button_colour">#f2f2f2</color>
+<color name="recycler_view_bg_colour">#eeeeee</color>
+       
+    
+    
+<!--     <color name="canvas">#FF404040</color> -->
+<color name="canvas">#FF404040</color>
+    <color name="bar">#f0f0f0</color>
+        <color name="b_blk">#000000</color>
+    <color name="textColor">#404040</color>
+    <color name="Whatz">#114330</color>
+
+ 
+    <color name="titleBg">#C0202020</color>
+    <color name="page_num">#c6c3c6</color>
+    
+   
+      <color name="Bluelol">#2e4d50</color> 
+            <color name="Brownh">#4b2814</color>
+                     <color name="Brownl">#8a7a59</color>
+            <color name="Red">#cd5d5c</color>
+    <color name="Pink">#a2417b</color>
+        <color name="Purple">#6f00ff</color>
+                <color name="Yellow">#e2a757</color>
+      <color name="Teal">#114330</color>
+  <color name="Black">#1a292c</color> 
+    <color name="Mint">#79ccc4</color> 
+   
+    
+</resources>

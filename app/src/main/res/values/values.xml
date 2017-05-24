@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+      <integer name="rcv_animationDurationHide">420</integer>
+    <integer name="rcv_animationDurationReveal">420</integer>
+    <integer name="av_animationDuration">340</integer>
+            <dimen name="default_margin_padding">16dp</dimen>
+</resources>

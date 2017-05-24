@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" >
+  
+    <!--         android:icon="@drawable/ic_assignment_black_36dp" -->
+    
+        <item
+        android:id="@+id/menu_nav_drawer_list_pdf"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/a_pdf"
+        android:title="List PDF"/>
+       
+        <item
+        android:id="@+id/menu_nav_drawer_settings"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_settings_black_48dp"
+        android:title="Settings"/>
+        
+         <item
+        android:id="@+id/menu_nav_drawer_upgrade"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_credit_card_black_48dp"
+        android:title="Remove ads"/>
+         
+          <!--<item-->
+        <!--android:id="@+id/menu_nav_drawer_star"-->
+        <!--app:showAsAction="ifRoom"-->
+        <!--android:icon="@drawable/ic_rate_review_black_48dp"-->
+        <!--android:title="Rate in Store"/>-->
+          
+           <item
+        android:id="@+id/menu_nav_drawer_feedback"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_feedback_black_48dp"
+        android:title="Feedback"/>
+           
+            <item
+        android:id="@+id/menu_nav_drawer_aboutapp"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_brush_black_48dp"
+        android:title="About App"/>
+            
+                        <item
+        android:id="@+id/menu_nav_drawer_exit"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_exit_to_app_black_48dp"
+        android:title="Exit"/>
+
+</menu>

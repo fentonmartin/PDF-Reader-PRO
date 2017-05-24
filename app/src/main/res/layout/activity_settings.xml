@@ -1,0 +1,17 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.material_design1.SettingsActivty" >
+
+    
+    <include
+        layout="@layout/tool_bar_main" 
+        android:id="@+id/app_baar"/>
+<FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_below="@+id/app_baar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

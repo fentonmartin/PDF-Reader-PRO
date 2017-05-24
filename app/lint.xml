@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <issue id="DefaultLocale">
+        <ignore path="src/com/example/pdfviewerlite/ActivityFront.java" />
+    </issue>
+    <issue id="NewApi" severity="ignore">
+        <ignore path="src/com/example/bureau/Listdirectry.java" />
+    </issue>
+    <issue id="ResourceAsColor">
+        <ignore path="src/com/artifex/mupdf/OutlineAdapter.java" />
+        <ignore path="src/com/artifex/mupdf/ReaderView.java" />
+    </issue>
+</lint>
