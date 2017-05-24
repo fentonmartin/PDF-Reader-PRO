@@ -94,7 +94,7 @@ public class ActivityFront extends AppCompatActivity implements MaterialTabListe
 
 
 	AdView mAdView;
-	InterstitialAd mInterstitialAd;
+//	InterstitialAd mInterstitialAd;
 	AdRequest adRequest;
 	boolean isActivityIsVisible = true;
 
@@ -109,25 +109,25 @@ public class ActivityFront extends AppCompatActivity implements MaterialTabListe
 	}
 
 
-	private void requestNewInterstitial() {
-		final AdRequest adRequest = new AdRequest.Builder()
-				.addTestDevice("SEE_YOUR_LOGCAT_TO_GET_YOUR_DEVICE_ID")
-				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-				.addTestDevice("C87242295BB59DB07A32E8637643B55E")
-				.build();
-
-
-
-		final Handler handler = new Handler();
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				//Do something after 100ms
-				mInterstitialAd.loadAd(adRequest);
-			}
-		}, 60000);
-
-	}
+//	private void requestNewInterstitial() {
+//		final AdRequest adRequest = new AdRequest.Builder()
+//				.addTestDevice("SEE_YOUR_LOGCAT_TO_GET_YOUR_DEVICE_ID")
+//				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+//				.addTestDevice("C87242295BB59DB07A32E8637643B55E")
+//				.build();
+//
+//
+//
+//		final Handler handler = new Handler();
+//		handler.postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
+//				//Do something after 100ms
+//				mInterstitialAd.loadAd(adRequest);
+//			}
+//		}, 60000);
+//
+//	}
 
 
 	@Override
@@ -146,7 +146,7 @@ public class ActivityFront extends AppCompatActivity implements MaterialTabListe
 		mAdView.resume();
 //        this.mWakeLock.acquire();
 		isActivityIsVisible = true;
-		if(mInterstitialAd!=null)if(mInterstitialAd.isLoaded()) mInterstitialAd.show();
+//		if(mInterstitialAd!=null)if(mInterstitialAd.isLoaded()) mInterstitialAd.show();
 
 	}
 
@@ -195,23 +195,23 @@ public class ActivityFront extends AppCompatActivity implements MaterialTabListe
 					mAdView.setVisibility(View.VISIBLE);
 				}
 			});
-			mInterstitialAd = new InterstitialAd(this);
-			mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
-
-			mInterstitialAd.setAdListener(new AdListener() {
-				@Override
-				public void onAdClosed() {
-					requestNewInterstitial();
-//                beginPlayingGame();
-				}
-
-				public void onAdLoaded() {
-					if (isActivityIsVisible && !d_user_addfree_actual) {
-						mInterstitialAd.show();
-					}
-				}
-			});
-			requestNewInterstitial();
+//			mInterstitialAd = new InterstitialAd(this);
+//			mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
+//
+//			mInterstitialAd.setAdListener(new AdListener() {
+//				@Override
+//				public void onAdClosed() {
+//					requestNewInterstitial();
+////                beginPlayingGame();
+//				}
+//
+//				public void onAdLoaded() {
+//					if (isActivityIsVisible && !d_user_addfree_actual) {
+//						mInterstitialAd.show();
+//					}
+//				}
+//			});
+//			requestNewInterstitial();
 		}
 
 
