@@ -7,4 +7,28 @@
         app:showAsAction="always"
         android:title="Bookmark"/>
 
+    <item
+        android:icon="@drawable/ic_menu_white_24dp"
+        android:id="@+id/action_content"
+        app:showAsAction="never"
+        android:title="Content"/>
+
+    <item
+        android:icon="@drawable/ic_image_white_24dp"
+        android:id="@+id/action_extr_image"
+        app:showAsAction="never"
+        android:title="Extract to image"/>
+
+    <item
+        android:icon="@drawable/ic_share_white_24dp"
+        android:id="@+id/action_share"
+        app:showAsAction="never"
+        android:title="Share document"/>
+
+    <item
+        android:icon="@drawable/ic_search_white_24dp"
+        android:id="@+id/action_search"
+        app:showAsAction="ifRoom"
+        android:title="Search"/>
+
 </menu>

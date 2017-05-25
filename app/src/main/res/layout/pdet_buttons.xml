@@ -6,66 +6,20 @@
     xmlns:fab="http://schemas.android.com/apk/res-auto">
 
 
-    <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/goback"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <com.github.clans.fab.FloatingActionButton
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        fab:menu_labels_style="@style/MenuLabelsStyle"
-        fab:menu_labels_showAnimation="@anim/jump_from_down"
-        fab:menu_labels_hideAnimation="@anim/jump_to_down"
-        fab:menu_animationDelayPerItem="0"
-        fab:menu_shadowColor="#444"
-        fab:menu_colorNormal="@color/primaryColor"
-        fab:menu_colorPressed="@color/primaryColorDark"
-        fab:menu_colorRipple="@color/primaryColor">
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_menu_white_24dp"
-            fab:fab_label="@string/fab_tb_content"
-            style="@style/MenuButtonsStyle" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab_read_page"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_play_circle_outline_white_24dp"
-            fab:fab_label="Read this page"
-            style="@style/MenuButtonsStyle" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab_extractImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_image_white_24dp"
-            fab:fab_label="@string/fab_ext"
-            style="@style/MenuButtonsStyle" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_share_white_24dp"
-            fab:fab_label="@string/fab_share"
-            style="@style/MenuButtonsStyle" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_search_white_24dp"
-            fab:fab_label="@string/fab_search"
-            style="@style/MenuButtonsStyle" />
-
-    </com.github.clans.fab.FloatingActionMenu>
+        android:id="@+id/fab_read_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_play_circle_outline_white_24dp"
+        fab:fab_label="@string/fab_tb_content"
+        style="@style/MenuButtonsStyle" />
 
     <ViewSwitcher
 

@@ -24,6 +24,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import deprecation.compact.DepricationCompact;
+
 
 /**
  * A Toolbar that contains multiple tabs
@@ -76,8 +78,9 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
 				hasIcons = a.getBoolean(R.styleable.MaterialTabHost_hasIcons, false);
 
 				
-				primaryColor = getResources().getColor(R.color.primaryColor);
-				accentColor =  getResources().getColor(R.color.accentColor);
+				primaryColor = DepricationCompact.getColor(context,R.color.primaryColor);
+//				accentColor =  getResources().getColor(R.color.accentColor);
+                accentColor =  DepricationCompact.getColor(context,R.color.white_color);
                 //primaryColor = a.getColor(R.styleable.MaterialTabHost_materialTabsPrimaryColor, Color.parseColor("#009688"));
                // accentColor = a.getColor(R.styleable.MaterialTabHost_accentColor,Color.parseColor("#00b0ff"));
               //  iconColor = a.getColor(R.styleable.MaterialTabHost_iconColor,Color.WHITE);

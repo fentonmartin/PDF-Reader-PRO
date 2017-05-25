@@ -1,6 +1,8 @@
 package com.artifex.mupdfdemo;
 
 
+import com.artifex.mupdfdemo.helper.BitMapHelper;
+import com.artifex.mupdfdemo.helper.TakeClickHelper;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdListener;
@@ -37,6 +39,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -47,6 +50,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -119,11 +123,11 @@ public class MuPDFActivity extends AppCompatActivity {
 	private final int TAP_PAGE_MARGIN = 5;
 	/**�ӳ�����*/
 	private static final int SEARCH_PROGRESS_DELAY = 200;
-	private MuPDFCore core;
+	public MuPDFCore core;
 	/**�ļ���*/
 	private String mFileName;
 	/**�Ķ���,������ʾpdf�ĵ�������*/
-	private ReaderView mDocView;
+	public ReaderView mDocView;
 	/**��ť��ͼ*/
 	private View mButtonsView;
 	private boolean mButtonsVisible;
@@ -137,14 +141,14 @@ public class MuPDFActivity extends AppCompatActivity {
 	private ImageButton mSearchFwd;
 	private EditText mSearchText;
 	private ImageView cutP;
-	private FloatingActionMenu back;
+	public FloatingActionButton fab_read_page;
 	private AsyncTask<Integer, Integer, SearchTaskResult> mSearchTask;
 	// private SearchTaskResult mSearchTaskResult;
 	private AlertDialog.Builder mAlertBuilder;
 	private LinkState mLinkState = LinkState.DEFAULT;
 	private final Handler mHandler = new Handler();
 
-	FloatingActionButton fabContent, fabShare, fabSearch, fabCreateImage,fabRead;
+	FloatingActionButton fabRead;
 	Toolbar toolbar1, toolbar2;
 	TextToSpeech tts;
 	String path = null;
@@ -208,8 +212,7 @@ public class MuPDFActivity extends AppCompatActivity {
 			tts = new TextToSpeech(getApplicationContext(), null);
 			tts.setLanguage(Locale.US);
 
-
-			if (!core.hasOutline()) fabContent.setEnabled(false);}catch(Exception d){}
+ }catch(Exception d){}
 //		Log.e("ssss",mDocView.toString());
 
 	}
@@ -350,7 +353,7 @@ public class MuPDFActivity extends AppCompatActivity {
 				Log.e("EXC", e.toString());
 			}
 
-			Bitmap b = getBitmapFromView(view);
+			Bitmap b = BitMapHelper.getBitmapFromView(view);
 			SaveImage(b);
 		}catch (Exception e){Log.e("error sav bm",e.toString());}
 		super.onBackPressed();
@@ -358,45 +361,7 @@ public class MuPDFActivity extends AppCompatActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case android.R.id.home:
-
-
-				onBackPressed();
-			    break;
-			case R.id.action_bookmark:
-
-				String name = 	new File(getIntent().getData().toString()).getName().replace("'","''");;
-				Dir_size_Human_Redable newobj = new Dir_size_Human_Redable();
-				long f_size= new File(getIntent().getData().toString()).length();
-				String data  = newobj.humanReadableByteCount(f_size, false).replace("'","''");;
-				Date lastModDate = new Date(new File(getIntent().getData().toString()).lastModified());
-				DateFormat formater = DateFormat.getDateInstance();
-				String date  = formater.format(lastModDate).replace("'","''");;
-				String path = getIntent().getData().toString().replace("'","''");
-				String image = "a_pdf";
-				try{
-					SQLiteDatabase myDB = openOrCreateDatabase("myDB1", this.MODE_PRIVATE, null);
-					Cursor r = myDB.rawQuery("select * from PDFBOOK"+ " where path  = '"+path+"' ", null);
-					if(r.moveToFirst()){
-
-						Snackbar.make(findViewById(android.R.id.content), "Already Exist in Bookmark!", Snackbar.LENGTH_LONG).show();
-
-					}else {
-
-						myDB.execSQL("insert into PDFBOOK values('"+image+"','"+name+"','"+data+"','"+date+"','"+path+"')");
-						Snackbar.make(findViewById(android.R.id.content),"Bookmark Added", Snackbar.LENGTH_LONG).show();
-					}
-
-
-				}catch(Exception exc){
-
-					Snackbar.make(findViewById(android.R.id.content),"Something went wrong!", Snackbar.LENGTH_LONG).show();
-				}
-
-				break;
-		}
-
+		TakeClickHelper.takeMenuClick(item.getItemId(), MuPDFActivity.this);
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -423,7 +388,6 @@ public class MuPDFActivity extends AppCompatActivity {
 			switch (v.getId()) {
 
 				case R.id.fab_read_page:
-                    back.close(true);
 					String s = "";
 					s = extracttext();
 					if(s=="") Snackbar.make(MuPDFActivity.this.findViewById(android.R.id.content),"Can't read this page",Snackbar.LENGTH_LONG).show();
@@ -436,6 +400,7 @@ public class MuPDFActivity extends AppCompatActivity {
 						Snackbar.make(MuPDFActivity.this.findViewById(android.R.id.content),"Please increase volume",Snackbar.LENGTH_LONG).show();
 
 						if(Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+
 							tts.speak(s, TextToSpeech.QUEUE_FLUSH, null, null);
 						} else {
 							tts.speak(s, TextToSpeech.QUEUE_FLUSH, null);
@@ -446,104 +411,6 @@ public class MuPDFActivity extends AppCompatActivity {
 						tts.stop();
 						fabRead.setImageResource(R.drawable.ic_play_circle_outline_white_24dp);
 					}
-
-
-					break;
-
-				case R.id.fab_extractImage:
-
-//						int with = (int) (page.getWidth() * scaleBy);
-//						int height = (int) (page.getHeight() * scaleBy);
-
-						// you can change these values as you to zoom in/out
-						// and even distort (scale without maintaining the aspect ratio)
-						// the resulting images
-
-						// Long running
-					back.close(true);
-//					mTopBarSwitcher.setVisibility(View.INVISIBLE);
-//					mPageSlider.setVisibility(View.INVISIBLE);
-//					back.setVisibility(View.INVISIBLE);
-//					mPageNumberView.setVisibility(View.INVISIBLE);
-
-
-					View view = mDocView.getDisplayedView();
-
-              try {
-				  if (false == view.isDrawingCacheEnabled()) {
-					  view.setDrawingCacheEnabled(true);
-				  }
-			  }catch (Exception e){Log.e("EXC",e.toString());}
-						Bitmap bitmap = getBitmapFromView(view);
-//					Bitmap croppedBitmap = Bitmap.createBitmap(bitmap, 0, 10, bitmap.getWidth(), bitmap.getHeight() - 20);
-
-						try {
-							new File(Environment.getExternalStorageDirectory()+"/PDF Reader").mkdirs();
-							File outputFile = new File(Environment.getExternalStorageDirectory()+"/PDF Reader", System.currentTimeMillis()+"_pdf.jpg");
-							FileOutputStream outputStream = new FileOutputStream(outputFile);
-
-							// a bit long running
-							bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-
-							outputStream.close();
-//							Snackbar.make(getWindow().getDecorView().getRootView(), "Image saved successfully...\n Location: "+outputFile.getAbsolutePath(), Snackbar.LENGTH_LONG).show();
-							try{sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://"+ Environment.getExternalStorageDirectory())));}catch(Exception e){Log.e("Er gallery refresh",e.toString());}
-                             startActivity(new Intent(MuPDFActivity.this, PDFSaveToDiskShow.class).putExtra("path",outputFile.getAbsolutePath()));
-						} catch (IOException e) {
-							Log.e("During IMAGE formation", e.toString());
-							Snackbar.make(findViewById(android.R.id.content), "Somethig went wrong can't save...", Snackbar.LENGTH_LONG).show();
-						}
-
-					break;
-
-
-				case R.id.fab_share:
-					 back.close(true);
-
-//					ArrayList<Uri> iuri =new ArrayList<Uri>();
-//
-//					File file11=new File(getIntent().getData().toString());
-//					Uri uri11 = Uri.fromFile(file11);
-//					iuri.add(uri11);
-//					Intent iintent = new Intent();
-//					iintent.setAction(Intent.ACTION_SEND_MULTIPLE);
-//					iintent.setType("*/*");
-// 					iintent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, iuri);
-//					startActivity(iintent);
-						try {
-							File fileWithinMyDir = new File(getIntent().getData().toString());
-							Intent intentShareFile = new Intent(Intent.ACTION_SEND);
-							if (fileWithinMyDir.exists()) {
-								intentShareFile.setType("application/pdf");
-								intentShareFile.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + fileWithinMyDir.toString()));
-								Snackbar.make(findViewById(android.R.id.content), "Select App to share...", Snackbar.LENGTH_LONG).show();
-								intentShareFile.putExtra(Intent.EXTRA_SUBJECT,
-										"Sharing File...");
-								intentShareFile.putExtra(Intent.EXTRA_TEXT, "Sharing File...");
-
-								startActivity(Intent.createChooser(intentShareFile, "Share File"));
-							}
-						}catch (Exception exc){
-							Snackbar.make(findViewById(android.R.id.content), "Something went wrong while sharing.", Snackbar.LENGTH_LONG).show();
-							 Log.e("Share",exc.toString());
-						}
-
-					break;
-
-				case R.id.fab11:
-					       back.close(true);
-							OutlineItem outline[] = core.getOutline();
-							if (outline != null) {
-								OutlineActivityData.get().items = outline;
-								Intent intent = new Intent(MuPDFActivity.this,
-										OutlineActivity.class);
-								startActivityForResult(intent, 0);
-							}
-
-					break;
-
-				case R.id.fab_search:
-					searchModeOn();
 					break;
 
 			}
@@ -553,22 +420,10 @@ public class MuPDFActivity extends AppCompatActivity {
 
 	private void connectTakeClickfab() {
 		try {
-			fabContent = (FloatingActionButton) findViewById(R.id.fab11);
-			fabContent.setOnClickListener(clickListener);
-			fabSearch = (FloatingActionButton) findViewById(R.id.fab_search);
-			fabSearch.setOnClickListener(clickListener);
-			fabShare = (FloatingActionButton) findViewById(R.id.fab_share);
-			fabShare.setOnClickListener(clickListener);
-			fabCreateImage = (FloatingActionButton) findViewById(R.id.fab_extractImage);
-			fabCreateImage.setOnClickListener(clickListener);
+
 			fabRead = (FloatingActionButton) findViewById(R.id.fab_read_page);
 			fabRead.setOnClickListener(clickListener);
-
 			fabRead.setVisibility(View.GONE);
-			fabContent.setVisibility(View.GONE);
-			fabCreateImage.setVisibility(View.GONE);
-			fabSearch.setVisibility(View.GONE);
-			fabShare.setVisibility(View.GONE);
 
 		}catch (Exception s){Log.e("Can't nect FloatingBt",s.toString());}
 	}
@@ -845,7 +700,7 @@ public class MuPDFActivity extends AppCompatActivity {
 				cutP.setVisibility(View.INVISIBLE);
 				mTopBarSwitcher.setVisibility(View.INVISIBLE);
 				mPageSlider.setVisibility(View.INVISIBLE);
-				back.setVisibility(View.INVISIBLE);
+				fab_read_page.setVisibility(View.INVISIBLE);
 				mPageNumberView.setVisibility(View.INVISIBLE);
 				View view = MuPDFActivity.this.getWindow().getDecorView();
 				if (false == view.isDrawingCacheEnabled()) {
@@ -866,30 +721,9 @@ public class MuPDFActivity extends AppCompatActivity {
 			
 		});
 
-		back.setOnMenuToggleListener(new FloatingActionMenu.OnMenuToggleListener() {
-			@Override
-			public void onMenuToggle(boolean opened) {
-				Log.e("sdfs","Sdf");
 
-				if(fabRead==null) connectTakeClickfab();
 
-				if( !opened) {
-					fabRead.setVisibility(View.GONE);
-					fabContent.setVisibility(View.GONE);
-					fabCreateImage.setVisibility(View.GONE);
-					fabSearch.setVisibility(View.GONE);
-					fabShare.setVisibility(View.GONE);
-				}else{
-					fabRead.setVisibility(View.VISIBLE);
-					fabContent.setVisibility(View.VISIBLE);
-					fabCreateImage.setVisibility(View.VISIBLE);
-					fabSearch.setVisibility(View.VISIBLE);
-					fabShare.setVisibility(View.VISIBLE);
-				}
-			}
-		});
-
-		back.setOnClickListener(new View.OnClickListener() {
+		fab_read_page.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -1115,21 +949,21 @@ public class MuPDFActivity extends AppCompatActivity {
 			});
 			cutP.startAnimation(anim);
 			
-			anim = new TranslateAnimation(0, 0, back.getHeight(), 0);
+			anim = new TranslateAnimation(0, 0, fab_read_page.getHeight(), 0);
 			anim.setDuration(200);
 			anim.setAnimationListener(new Animation.AnimationListener() {
 				public void onAnimationStart(Animation animation) {
-					back.setVisibility(View.VISIBLE);
+					fab_read_page.setVisibility(View.VISIBLE);
 				}
 
 				public void onAnimationRepeat(Animation animation) {
 				}
 
 				public void onAnimationEnd(Animation animation) {
-					back.setVisibility(View.VISIBLE);
+					fab_read_page.setVisibility(View.VISIBLE);
 				}
 			});
-			back.startAnimation(anim);
+			fab_read_page.startAnimation(anim);
 		}
 	}
 
@@ -1185,25 +1019,25 @@ public class MuPDFActivity extends AppCompatActivity {
 				}
 			});
             cutP.startAnimation(anim);
-			anim = new TranslateAnimation(0, 0, 0, back.getHeight());
+			anim = new TranslateAnimation(0, 0, 0, fab_read_page.getHeight());
 			anim.setDuration(200);
 			anim.setAnimationListener(new Animation.AnimationListener() {
 				public void onAnimationStart(Animation animation) {
-					back.setVisibility(View.INVISIBLE);
+					fab_read_page.setVisibility(View.INVISIBLE);
 				}
 
 				public void onAnimationRepeat(Animation animation) {
 				}
 
 				public void onAnimationEnd(Animation animation) {
-					back.setVisibility(View.INVISIBLE);
+					fab_read_page.setVisibility(View.INVISIBLE);
 				}
 			});
-			back.startAnimation(anim);
+			fab_read_page.startAnimation(anim);
 		}
 	}
 
-	void searchModeOn() {
+	public void searchModeOn() {
 		mTopBarIsSearch = true;
 		// Focus on EditTextWidget
 		mSearchText.requestFocus();
@@ -1243,8 +1077,8 @@ public class MuPDFActivity extends AppCompatActivity {
 		cutP = (ImageView)mButtonsView.findViewById(R.id.cutP);
 		//System.out.println(cutP);
 		cutP.setVisibility(View.INVISIBLE);
-		back = (FloatingActionMenu) mButtonsView.findViewById(R.id.goback);
-		back.setVisibility(View.VISIBLE);
+		fab_read_page = (FloatingActionButton) mButtonsView.findViewById(R.id.fab_read_page);
+		fab_read_page.setVisibility(View.VISIBLE);
 		mTopBarSwitcher.setVisibility(View.INVISIBLE);
 		mPageNumberView.setVisibility(View.INVISIBLE);
 		mPageSlider.setVisibility(View.INVISIBLE);
@@ -1364,22 +1198,5 @@ public class MuPDFActivity extends AppCompatActivity {
 	}
 	public static Bitmap backBitmap = null;
 
-	public static Bitmap getBitmapFromView(View view) {
-		//Define a bitmap with the same size as the view
-		Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
-		//Bind a canvas to it
-		Canvas canvas = new Canvas(returnedBitmap);
-		//Get the view's background
-		Drawable bgDrawable =view.getBackground();
-		if (bgDrawable!=null)
-			//has background drawable, then draw it on the canvas
-			bgDrawable.draw(canvas);
-		else
-			//does not have background drawable, then draw white background on the canvas
-			canvas.drawColor(Color.WHITE);
-		// draw the view on the canvas
-		view.draw(canvas);
-		//return the bitmap
-		return returnedBitmap;
-	}
+
 }
