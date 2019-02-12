@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     dexOptions {
-        incremental true
         javaMaxHeapSize "4g"
     }
     defaultConfig {
@@ -22,19 +21,18 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:recyclerview-v7:28.0.0'
-    compile 'com.android.support:cardview-v7:28.0.0'
-    compile 'com.android.support:appcompat-v7:28.0.0'
-    compile 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
 
-    compile 'com.github.clans:fab:1.6.4'
-    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    //    compile 'com.joanzapata.pdfview:android-pdfview:+'
-    //    compile 'com.github.barteksc:android-pdf-viewer:1.1.1'
-    compile files('libs/activation.jar')
-    compile files('libs/additionnal.jar')
-    compile files('libs/itextpdf-5.4.1.jar')
-    compile files('libs/poi-3.12-20150511.jar')
-
-    compile 'com.google.firebase:firebase-ads:10.0.1'
+    implementation 'com.github.clans:fab:1.6.4'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    //    implementation 'com.joanzapata.pdfview:android-pdfview:+'
+    //    implementation 'com.github.barteksc:android-pdf-viewer:1.1.1'
+    implementation files('libs/activation.jar')
+    implementation files('libs/additionnal.jar')
+    implementation files('libs/itextpdf-5.4.1.jar')
+    implementation files('libs/poi-3.12-20150511.jar')
 }
