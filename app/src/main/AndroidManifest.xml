@@ -4,10 +4,6 @@
     android:versionCode="22"
     android:versionName="5.06">
 
-    <uses-sdk
-        android:minSdkVersion="11"
-        android:targetSdkVersion="24" />
-
     <uses-permission android:name="com.android.vending.BILLING"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
