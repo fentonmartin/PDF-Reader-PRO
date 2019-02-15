@@ -63,29 +63,18 @@
             android:id="@+id/view_pager_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/adView"
+            android:layout_alignParentBottom="true"
              >
  </android.support.v4.view.ViewPager>
         <com.github.clans.fab.FloatingActionButton
             android:layout_margin="12dp"
-            android:layout_above="@+id/adView"
             android:layout_alignBottom="@+id/view_pager_home"
             android:layout_alignParentRight="true"
             android:id="@+id/fab22"
+            android:layout_alignParentBottom="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/fab_add"/>
-
-        <com.google.android.gms.ads.AdView
-            android:visibility="gone"
-            xmlns:ads="http://schemas.android.com/apk/res/com.pdf.reader.pro.ebin"
-            android:id="@+id/adView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            ads:adSize="SMART_BANNER"
-            ads:adUnitId="@string/banner_ad_unit_id">
-        </com.google.android.gms.ads.AdView>
 
     </RelativeLayout>
 

@@ -34,10 +34,10 @@ public class HandlePayment {
                     int n = result.getResponse();
                     if(n == 7){
                         prefEditor.putBoolean(Key.PREFERNCE_ADFREE,true).commit();
-                        if(((ActivityFront) mainViewActivityContext).mAdView != null) {
-                            ((ActivityFront) mainViewActivityContext).mAdView.setVisibility(View.GONE);
-                            ((ActivityFront) mainViewActivityContext).d_user_addfree_actual = true;
-                        }
+//                        if(((ActivityFront) mainViewActivityContext).mAdView != null) {
+//                            ((ActivityFront) mainViewActivityContext).mAdView.setVisibility(View.GONE);
+//                            ((ActivityFront) mainViewActivityContext).d_user_addfree_actual = true;
+//                        }
                     }
 
                     return;
@@ -47,10 +47,10 @@ public class HandlePayment {
 
                     //error Should save local first
                     prefEditor.putBoolean(Key.PREFERNCE_ADFREE,true).commit();
-                    if(((ActivityFront) mainViewActivityContext).mAdView != null) {
-                        ((ActivityFront) mainViewActivityContext).mAdView.setVisibility(View.GONE);
-                        ((ActivityFront) mainViewActivityContext).d_user_addfree_actual = true;
-                    }
+//                    if(((ActivityFront) mainViewActivityContext).mAdView != null) {
+//                        ((ActivityFront) mainViewActivityContext).mAdView.setVisibility(View.GONE);
+//                        ((ActivityFront) mainViewActivityContext).d_user_addfree_actual = true;
+//                    }
                     consumeItem(mHelper); //CONSUME PURCHASED ITEM SO RESET
 //
                 }

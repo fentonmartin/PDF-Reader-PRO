@@ -5,10 +5,6 @@ import comvc.ebtabsss.tabs.Fragment_fileBrowser;
 import comvc.ebtabsss.tabs.Fragment_listPDF;
 
 import com.github.clans.fab.FloatingActionButton;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.pdf.reader.pro.ebin.R;
 
 import comvc.util.IabHelper;
@@ -93,9 +89,9 @@ public class ActivityFront extends AppCompatActivity implements MaterialTabListe
 	FloatingActionButton fab;
 
 
-	AdView mAdView;
+//	AdView mAdView;
 //	InterstitialAd mInterstitialAd;
-	AdRequest adRequest;
+//	AdRequest adRequest;
 	boolean isActivityIsVisible = true;
 
 
@@ -104,7 +100,7 @@ public class ActivityFront extends AppCompatActivity implements MaterialTabListe
 	@Override
 	public void onDestroy() {
 //        this.mWakeLock.release();
-		if(mAdView!=null)mAdView.destroy();
+//		if(mAdView!=null)mAdView.destroy();
 		super.onDestroy();
 	}
 
@@ -134,7 +130,7 @@ public class ActivityFront extends AppCompatActivity implements MaterialTabListe
 	protected void onPause() {
 		super.onPause();
 		isActivityIsVisible = false;
-		if(mAdView!=null)mAdView.pause();
+//		if(mAdView!=null)mAdView.pause();
 //        this.mWakeLock.release();
 	}
 
@@ -143,7 +139,7 @@ public class ActivityFront extends AppCompatActivity implements MaterialTabListe
 	@Override
 	protected void onResume() {
 		super.onResume();
-		mAdView.resume();
+//		mAdView.resume();
 //        this.mWakeLock.acquire();
 		isActivityIsVisible = true;
 //		if(mInterstitialAd!=null)if(mInterstitialAd.isLoaded()) mInterstitialAd.show();
@@ -179,22 +175,22 @@ public class ActivityFront extends AppCompatActivity implements MaterialTabListe
 		toolbar = (Toolbar) findViewById(R.id.app_baar);
 		mappBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
 	    setSupportActionBar(toolbar);
-		mAdView = (AdView) findViewById(R.id.adView) ;
+//		mAdView = (AdView) findViewById(R.id.adView) ;
 
 
 		if(!d_user_addfree_actual) {
 			//Loading Aword ad
-			adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-					.addTestDevice("C87242295BB59DB07A32E8637643B55E")
-					.build();
-			mAdView.loadAd(adRequest);
-			mAdView.setAdListener(new AdListener() {
-				@Override
-				public void onAdLoaded() {
-					super.onAdLoaded();
-					mAdView.setVisibility(View.VISIBLE);
-				}
-			});
+//			adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+//					.addTestDevice("C87242295BB59DB07A32E8637643B55E")
+//					.build();
+//			mAdView.loadAd(adRequest);
+//			mAdView.setAdListener(new AdListener() {
+//				@Override
+//				public void onAdLoaded() {
+//					super.onAdLoaded();
+//					mAdView.setVisibility(View.VISIBLE);
+//				}
+//			});
 //			mInterstitialAd = new InterstitialAd(this);
 //			mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
 //

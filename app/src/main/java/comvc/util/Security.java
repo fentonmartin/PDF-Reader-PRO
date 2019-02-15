@@ -15,9 +15,10 @@
 
 package comvc.util;
 
-import android.support.design.BuildConfig;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.pdf.reader.pro.ebin.BuildConfig;
 
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;

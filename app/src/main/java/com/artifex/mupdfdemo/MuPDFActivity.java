@@ -5,10 +5,6 @@ import com.artifex.mupdfdemo.helper.BitMapHelper;
 import com.artifex.mupdfdemo.helper.TakeClickHelper;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.pdf.reader.pro.ebin.R;
 
 
@@ -235,7 +231,6 @@ public class MuPDFActivity extends AppCompatActivity {
 
 
 //	InterstitialAd mInterstitialAd;
-	AdRequest adRequest;
 	boolean isActivityIsVisible = true;
 
 
